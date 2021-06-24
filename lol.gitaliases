@@ -1,0 +1,4 @@
+; -*- mode: conf-windows; indent-tabs-mode: nil -*-
+
+[alias]
+    offmylawn = "!f () { echo ok boomer; }; f"
