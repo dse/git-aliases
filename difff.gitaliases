@@ -9,46 +9,15 @@
 ;     -I, --ignore-matching-lines=<regex>
 
 [alias]
-    difff = !"f () { \
+    showw = with-diff-brevity show
+    difff = with-diff-brevity diff
+    loggg = with-diff-brevity log
+    logg  = with-diff-brevity log
+
+    with-diff-brevity = !"f () { \
+        subcommand=\"$1\"; shift; \
         git -c core.whitespace=cr-at-eol \
-            diff --ignore-space-at-eol --ignore-cr-at-eol --ignore-all-space \
-            --diff-filter=ad --no-prefix \"$@\" \
-            ':(exclude,icase)package-lock.json' \
-            ':(exclude,icase)composer.lock' \
-            ':(exclude,icase)*.min.css' \
-            ':(exclude,icase)*.css.map' \
-            ':(exclude,icase)*.min.js' \
-            ':(exclude,icase)*.js.map' \
-            ':(exclude,icase)*.jpg' \
-            ':(exclude,icase)*.jpeg' \
-            ':(exclude,icase)*.png' \
-            ':(exclude,icase)*.gif' \
-            ':(exclude,icase)parsed/templates/' \
-            ':(exclude,icase)parsed/scss/' \
-            ':(exclude,icase)parsed/lang.json' \
-    ; }; f"
-    loggg = !"f () { \
-        git -c core.whitespace=cr-at-eol \
-            log --patch --ignore-space-at-eol --ignore-cr-at-eol --ignore-all-space \
-            --diff-filter=ad --no-prefix \"$@\" \
-            ':(exclude,icase)package-lock.json' \
-            ':(exclude,icase)composer.lock' \
-            ':(exclude,icase)*.min.css' \
-            ':(exclude,icase)*.css.map' \
-            ':(exclude,icase)*.min.js' \
-            ':(exclude,icase)*.js.map' \
-            ':(exclude,icase)*.jpg' \
-            ':(exclude,icase)*.jpeg' \
-            ':(exclude,icase)*.png' \
-            ':(exclude,icase)*.gif' \
-            ':(exclude,icase)parsed/templates/' \
-            ':(exclude,icase)parsed/scss/' \
-            ':(exclude,icase)parsed/lang.json' \
-    ; }; f"
-    logg = loggg
-    showw = !"f () { \
-        git -c core.whitespace=cr-at-eol \
-            show --patch --ignore-space-at-eol --ignore-cr-at-eol --ignore-all-space \
+            \"${subcommand}\" --patch --ignore-space-at-eol --ignore-cr-at-eol --ignore-all-space \
             --diff-filter=ad --no-prefix \"$@\" \
             ':(exclude,icase)package-lock.json' \
             ':(exclude,icase)composer.lock' \
