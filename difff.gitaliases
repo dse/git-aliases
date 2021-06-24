@@ -18,7 +18,8 @@
         subcommand=\"$1\"; shift; \
         git -c core.whitespace=cr-at-eol \
             \"${subcommand}\" --patch --ignore-space-at-eol --ignore-cr-at-eol --ignore-all-space \
-            --diff-filter=ad --no-prefix \"$@\" \
+            --diff-filter=ad --no-prefix \
+            \"$@\" \
             ':(exclude,icase)package-lock.json' \
             ':(exclude,icase)composer.lock' \
             ':(exclude,icase)*.min.css' \
