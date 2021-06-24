@@ -1,0 +1,14 @@
+; -*- mode: conf-windows; indent-tabs-mode: nil -*-
+
+[alias]
+    short-short-status = status -s -b --ahead-behind --untracked-files=no
+    short-status       = status -s -b --ahead-behind
+    branches-ahead-behind = !"f () { \
+        git for-each-ref --color=always \
+            --format='%(if)%(upstream:track)%(then)%(refname:short) %(upstream:short) %(color:bold yellow)%(upstream:track)%(color:reset)%(end)' \
+            refs/heads | sed -n '/./p'; \
+    }; f"
+    all-branches-ahead-behind = \
+        for-each-ref --color=always \
+        --format='%(refname:short) %(upstream:short)%(if)%(upstream:track)%(then) %(color:bold yellow)%(upstream:track)%(color:reset)%(end)' \
+        refs/heads
