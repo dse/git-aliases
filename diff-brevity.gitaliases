@@ -11,7 +11,7 @@
 [alias]
     ; used by a few aliases below, because I typically want certain
     ; options for brevity beyond just `diff -w`.
-    with-diff-brevity = !"f () { \
+    diff-brevity = !"f () { \
         subcommand=\"$1\"; shift; \
         git -c core.whitespace=cr-at-eol \
             \"${subcommand}\" --patch --ignore-space-at-eol --ignore-cr-at-eol --ignore-all-space \
@@ -32,7 +32,7 @@
             ':(exclude,icase)parsed/lang.json' \
     ; }; f"
 
-    showw = with-diff-brevity show
-    difff = with-diff-brevity diff
-    loggg = with-diff-brevity log
-    logg  = with-diff-brevity log
+    showw = diff-brevity show
+    difff = diff-brevity diff
+    loggg = diff-brevity log
+    logg  = diff-brevity log
