@@ -9,11 +9,8 @@
 ;     -I, --ignore-matching-lines=<regex>
 
 [alias]
-    showw = with-diff-brevity show
-    difff = with-diff-brevity diff
-    loggg = with-diff-brevity log
-    logg  = with-diff-brevity log
-
+    ; used by a few aliases below, because I typically want certain
+    ; options for brevity beyond just `diff -w`.
     with-diff-brevity = !"f () { \
         subcommand=\"$1\"; shift; \
         git -c core.whitespace=cr-at-eol \
@@ -34,3 +31,8 @@
             ':(exclude,icase)parsed/scss/' \
             ':(exclude,icase)parsed/lang.json' \
     ; }; f"
+
+    showw = with-diff-brevity show
+    difff = with-diff-brevity diff
+    loggg = with-diff-brevity log
+    logg  = with-diff-brevity log
