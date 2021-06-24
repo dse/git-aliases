@@ -6,8 +6,10 @@
     ; whatever command you supply, or prints a list of those directories
     ; if no command is supplied.
     find = !"f () { \
+               green=$'\\e'\"[0;32m\"; \
+               reset=$'\\e'\"[0m\"; \
                if (( $# )) ; then \
-                   find . -type d -exec test -d '{}/.git' \\; -exec echo '==> {} <==' \\; -prune -exec git in-dir {} \"$@\" \\; ; \
+                   find . -type d -exec test -d '{}/.git' \\; -exec echo \"${green}\"'==> {} <=='\"${reset}\" \\; -prune -exec git in-dir {} \"$@\" \\; ; \
                else \
                    find . -type d -exec test -d '{}/.git' \\; -exec echo {} \\; -prune ; \
                fi \
