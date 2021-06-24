@@ -6,17 +6,18 @@
     ; whatever command you supply, or prints a list of those directories
     ; if no command is supplied.
     find = !"f () { \
+               >&2 echo \"git find ||| ${@@Q}\"; \
                if (( $# )) ; then \
-                   find . -type d -exec test -d '{}/.git' \\; -exec echo '==> {} <==' \\; -prune -exec git find--indir {} \"$@\" \\; ; \
+                   find . -type d -exec test -d '{}/.git' \\; -exec echo '==> {} <==' \\; -prune -exec git in-dir {} \"$@\" \\; ; \
                else \
                    find . -type d -exec test -d '{}/.git' \\; -exec echo {} \\; -prune ; \
                fi \
            ; }; f"
 
-    ; `git find--indir` changes into the supplied directory before,
+    ; `git in-dir` changes into the supplied directory before,
     ; and only while, executing the supplied command.  It is used by
     ; `git find`.
-    find--indir = !"f () { \
+    in-dir = !"f () { \
                 dir=\"$1\"; shift; \
                 ( cd \"${dir}\" && git \"$@\" ) \
             ; }; f"
