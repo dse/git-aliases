@@ -15,6 +15,10 @@
                fi \
            ; }; f"
 
+    find-list = !"f () { \
+        find . -type d \\! \\( -exec test -d '{}/.git' \\; -exec echo '==> {} <==' \\; -prune \\) -print \
+    ; }; f"
+
     ; `git in-dir` changes into the supplied directory before,
     ; and only while, executing the supplied command.  It is used by
     ; `git find`.
