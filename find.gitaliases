@@ -9,14 +9,17 @@
                green=$'\\e'\"[0;32m\"; \
                reset=$'\\e'\"[0m\"; \
                if (( $# )) ; then \
-                   find . -type d -exec test -d '{}/.git' \\; -exec echo \"${green}\"'==> {} <=='\"${reset}\" \\; -prune -exec git in-dir {} \"$@\" \\; ; \
+                   find . -type d \
+                       -exec test -d '{}/.git' \\; -exec echo \"${green}\"'==> {} <=='\"${reset}\" \\; -prune -exec git in-dir {} \"$@\" \\; ; \
                else \
-                   find . -type d -exec test -d '{}/.git' \\; -exec echo {} \\; -prune ; \
+                   find . -type d \
+                       -exec test -d '{}/.git' \\; -exec echo {} \\; -prune ; \
                fi \
            ; }; f"
 
     find-list = !"f () { \
-        find . -type d \\! \\( -exec test -d '{}/.git' \\; -exec echo '==> {} <==' \\; -prune \\) -print \
+        find . -type d \
+            \\! \\( -exec test -d '{}/.git' \\; -exec echo '==> {} <==' \\; -prune \\) -print \
     ; }; f"
 
     ; `git in-dir` changes into the supplied directory before,
