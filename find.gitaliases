@@ -29,6 +29,6 @@
     ; and only while, executing the supplied command.  It is used by
     ; `git find`.
     in-dir = !"f () { \
-                 dir=\"$1\"; shift; \
-                 ( cd \"${dir}\" && git \"$@\" ) \
-             ; }; f"
+        dir=\"$1\"; shift; \
+        ( cd \"${dir}\" && git \"$@\" ) \
+    ; }; f"
