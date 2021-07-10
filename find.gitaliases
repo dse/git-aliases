@@ -6,8 +6,8 @@
     ; whatever command you supply, or prints a list of those directories
     ; if no command is supplied.
     find = !"f () { \
-        green=$'\\e'\"[0;32m\"; \
-        reset=$'\\e'\"[0m\"; \
+        green=\"[0;32m\"; \
+        reset=\"[0m\"; \
         if [ \"$#\" != 0 ] ; then \
             find . -type d \
                 \\! \\( -name node_modules -prune \\) \
